@@ -10,7 +10,7 @@ using Taller.Domain.Admins.Repositories;
 
 namespace Taller.Application.Admins.Services.Implementations
 {
-    public class MenuServices : IMenuService
+    public class MenuServices : IMenuServices
     {
         private readonly IMenuRepository _menuRepository;
         private readonly IMapper _mapper;
@@ -35,7 +35,7 @@ namespace Taller.Application.Admins.Services.Implementations
             return _mapper.Map<MenuDto?>(menu); 
         }
 
-        public async Task<MenuDto> CreateAsync(menuSaveDto menuSaveDto)
+        public async Task<MenuDto> CreateAsync(MenuSaveDto menuSaveDto)
         {
             Menu menu = _mapper.Map<Menu>(menuSaveDto);
             menu.RegistrationDate = DateTime.Now;
@@ -47,11 +47,11 @@ namespace Taller.Application.Admins.Services.Implementations
         }
 
 
-        public async Task<MenuDto> EditAsync(int id, menuSaveDto menuSaveDto)
+        public async Task<MenuDto> EditAsync(int id, MenuSaveDto menuSaveDto)
         {
             Menu menu = await _menuRepository.FindByIdAsync(id);
 
-            _mapper.Map<menuSaveDto, Menu>(menuSaveDto, menu);
+            _mapper.Map<MenuSaveDto, Menu>(menuSaveDto, menu);
 
             Menu menuSaved = await _menuRepository.SaveAsync(menu);
 

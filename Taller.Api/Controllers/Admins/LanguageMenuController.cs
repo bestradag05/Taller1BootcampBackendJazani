@@ -12,9 +12,9 @@ namespace Taller.Api.Controllers.Admins
     [ApiController]
     public class LanguageMenuController : ControllerBase
     {
-        private readonly ILanguageMenuService _languageMenuService;
+        private readonly ILanguageMenuServices _languageMenuService;
 
-        public LanguageMenuController(ILanguageMenuService languageMenuService)
+        public LanguageMenuController(ILanguageMenuServices languageMenuService)
         {
             _languageMenuService = languageMenuService;
         }

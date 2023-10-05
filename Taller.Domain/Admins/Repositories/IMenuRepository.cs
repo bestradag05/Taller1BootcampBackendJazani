@@ -1,14 +1,10 @@
 ﻿
 using Taller.Domain.Admins.Models;
+using Taller.Domain.Cores.Repositories;
 
 namespace Taller.Domain.Admins.Repositories
 {
-    public interface IMenuRepository
+    public interface IMenuRepository : ICrudRepository<Menu, int>
     {
-        Task<IReadOnlyList<Menu>> FindAllAsync();
-
-        Task<Menu?> FindByIdAsync(int id);
-
-        Task<Menu?> SaveAsync(Menu menu);
     }
 }

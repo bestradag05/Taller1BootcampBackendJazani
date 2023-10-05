@@ -1,6 +1,8 @@
 
 using Taller.Infraestructure.Cores.Context;
 using Taller.Application.Cores.Context;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,16 @@ builder.Services.addInfraestructureServices(builder.Configuration);
 //Aplications 
 
 builder.Services.AddApplicationServices();
+
+//Autofac
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(options =>
+    {
+        options.RegisterModule(new InfraestructureAutofacModule());
+        options.RegisterModule(new AplicationAutofacModule());
+
+    });
 
 
 

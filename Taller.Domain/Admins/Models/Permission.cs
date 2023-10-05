@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Taller.Domain.Admins.Models
 {
-    public class LanguageMenu
+    public class Permission
     {
-        public int LanguageId { get; set; }
-        public int MenuId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-        public string Name { get; set; } 
+        public string Slug { get; set; }
 
         public DateTimeOffset RegistrationDate { get; set; }
         public bool State { get; set; }
 
-        public virtual Language Language { get; set; } 
-
-        public virtual Menu Menu { get; set; } 
+        public List<Menu> Menus { get; } = new();
     }
 }

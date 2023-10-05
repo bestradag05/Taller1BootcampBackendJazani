@@ -16,8 +16,7 @@ namespace Taller.Application.Cores.Context
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddTransient<IMenuService, MenuServices>();
-            services.AddTransient<ILanguageMenuService, LangaugeMenuService>();
+
 
             return services;
         }

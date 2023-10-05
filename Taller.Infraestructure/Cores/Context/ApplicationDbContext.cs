@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 using Taller.Domain.Admins.Models;
 using Taller.Infraestructure.Admins.Configurations;
 
@@ -9,19 +11,28 @@ namespace Taller.Infraestructure.Cores.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        #region "DbSet"
-
-        public DbSet<Menu> Menus { get; set; }
-        public DbSet<LanguageMenu> LanguageMenus { get; set; }
-
-        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.ApplyConfiguration(new MenuConfiguration());
-            modelBuilder.ApplyConfiguration(new LanguageMenuConfiguration());
+            modelBuilder.Entity<Language>()
+           .HasMany(e => e.Menus)
+           .WithMany(e => e.Languages)
+           .UsingEntity(
+            l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+            r => r.HasOne(typeof(Language)).WithMany().HasForeignKey("languageid"));
+
+            modelBuilder.Entity<Permission>()
+           .HasMany(e => e.Menus)
+           .WithMany(e => e.Permissions)
+           .UsingEntity(
+                "rolemenupermission",
+            l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+            r => r.HasOne(typeof(Permission)).WithMany().HasForeignKey("permissionid"));
+
+
         }
 
 

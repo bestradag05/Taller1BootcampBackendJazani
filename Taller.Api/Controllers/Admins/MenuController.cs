@@ -13,9 +13,9 @@ namespace Taller.Api.Controllers.Admins
     public class MenuController : ControllerBase
     {
 
-        private readonly IMenuService _menuService;
+        private readonly IMenuServices _menuService;
 
-        public MenuController(IMenuService menuService )
+        public MenuController(IMenuServices menuService )
         {
             _menuService = menuService;
         }
@@ -37,14 +37,14 @@ namespace Taller.Api.Controllers.Admins
 
         // POST api/<MenuController>
         [HttpPost]
-        public async Task<MenuDto> Post([FromBody] menuSaveDto menuSaveDto)
+        public async Task<MenuDto> Post([FromBody] MenuSaveDto menuSaveDto)
         {
             return await _menuService.CreateAsync(menuSaveDto);
         }
 
         // PUT api/<MenuController>/5
         [HttpPut("{id}")]
-        public async Task<MenuDto> Put(int id, [FromBody] menuSaveDto menuSaveDto)
+        public async Task<MenuDto> Put(int id, [FromBody] MenuSaveDto menuSaveDto)
         {
 
             return await _menuService.EditAsync(id, menuSaveDto);

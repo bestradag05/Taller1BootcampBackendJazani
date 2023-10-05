@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taller.Application.Admins.Dtos.Menus
 {
-    public class menuSaveDto
+    public class MenuSaveDto
     {
         public string Name { get; set; } = default;
 

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Taller.Application.Admins.Dtos.Languages;
-using Taller.Application.Admins.Dtos.Permissions;
 
 namespace Taller.Application.Admins.Dtos.Menus
 {
-    public class MenuDto
+    public class MenuSimpleDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = default;
@@ -17,11 +15,5 @@ namespace Taller.Application.Admins.Dtos.Menus
 
         public int Level { get; set; } = default;
         public bool Visible { get; set; }
-
-        public List<LanguageSimpleDto> Languages { get; set; }
-
-        public List<PermissionSimpleDto> Permissions { get; set; }
-        public DateTimeOffset RegistrationDate { get; set; }
-        public bool State { get; set; }
     }
 }

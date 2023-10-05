@@ -1,14 +1,11 @@
 ﻿
 using Taller.Domain.Admins.Models;
+using Taller.Domain.Cores.Repositories;
 
 namespace Taller.Domain.Admins.Repositories
 {
-    public interface ILanguageMenuRepository
+    public interface ILanguageMenuRepository : ICrudRepository<LanguageMenu, int>
     {
-        Task<IReadOnlyList<LanguageMenu>> FindAllAsync();
-
-        Task<LanguageMenu?> FindByIdAsync(int id);
-
-        Task<LanguageMenu?> SaveAsync(LanguageMenu menu);
     }
+       
 }

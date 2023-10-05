@@ -7,7 +7,7 @@ using Taller.Application.Admins.Dtos.LanguageMenus;
 
 namespace Taller.Application.Admins.Services
 {
-    public interface ILanguageMenuService
+    public interface ILanguageMenuServices
     {
         Task<IReadOnlyList<LanguageMenuDto>> findAllAsync();
         Task<LanguageMenuDto?> FindByIdAsync(int id);

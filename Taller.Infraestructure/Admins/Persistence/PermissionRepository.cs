@@ -11,27 +11,25 @@ using Taller.Infraestructure.Cores.Persistences;
 
 namespace Taller.Infraestructure.Admins.Persistence
 {
-    public class MenuRepository : CrudRepository<Menu, int>, IMenuRepository
+    public class PermissionRepository : CrudRepository<Permission, int>, IPermissionRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public MenuRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public PermissionRepository(ApplicationDbContext dbContext) : base(dbContext) 
         {
             _dbContext = dbContext;
         }
 
-        public override async Task<IReadOnlyList<Menu>> FindAllAsync()
+        public override async Task<IReadOnlyList<Permission>> FindAllAsync()
         {
-            return await _dbContext.Set<Menu>().Include(t => t.Languages).Include(t => t.Permissions).AsNoTracking().ToListAsync();
+            return await _dbContext.Set<Permission>().Include(t => t.Menus).AsNoTracking().ToListAsync();
         }
 
-        public override async Task<Menu?> FindByIdAsync(int id)
+        public override async Task<Permission?> FindByIdAsync(int id)
         {
-            return await _dbContext.Set<Menu>()
-                .Include(t => t.Languages)
-                .Include(t => t.Permissions)
+            return await _dbContext.Set<Permission>()
+                .Include(t => t.Menus)
                 .FirstOrDefaultAsync(t => t.Id == id);
         }
-
     }
 }

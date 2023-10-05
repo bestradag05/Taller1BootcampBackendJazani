@@ -18,6 +18,7 @@ namespace Taller.Infraestructure.Admins.Configurations
             builder.Property(t => t.Visible).HasColumnName("visible");
             builder.Property(t => t.RegistrationDate).HasColumnName("registrationdate");
             builder.Property(t => t.State).HasColumnName("state");
+
         }
     }
 }

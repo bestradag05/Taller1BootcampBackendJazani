@@ -18,5 +18,10 @@ namespace Taller.Domain.Admins.Models
         public DateTimeOffset RegistrationDate { get; set; }
         public bool State { get; set; }
 
+        public List<Language> Languages { get; } = new();
+
+        public List<Permission> Permissions { get; } = new();
+
+
     }
 }

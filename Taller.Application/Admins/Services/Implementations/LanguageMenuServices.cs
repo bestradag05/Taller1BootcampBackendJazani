@@ -5,7 +5,7 @@ using Taller.Domain.Admins.Repositories;
 
 namespace Taller.Application.Admins.Services.Implementations
 {
-    public class LangaugeMenuService : ILanguageMenuService
+    public class LangaugeMenuService : ILanguageMenuServices
     {
         private readonly ILanguageMenuRepository _languageMenuRepository;
         private readonly IMapper _mapper;

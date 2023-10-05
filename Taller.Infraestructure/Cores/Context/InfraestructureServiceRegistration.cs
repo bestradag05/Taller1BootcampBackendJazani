@@ -21,8 +21,7 @@ namespace Taller.Infraestructure.Cores.Context
 
             });
 
-            services.AddTransient<IMenuRepository, MenuRepository>();
-            services.AddTransient<ILanguageMenuRepository, LanguageMenuRepository>();
+          
 
             return services;
         }
