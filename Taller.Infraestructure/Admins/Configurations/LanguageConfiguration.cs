@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Taller.Domain.Admins.Models;
@@ -25,7 +26,11 @@ namespace Taller.Infraestructure.Admins.Configurations
             builder.Property(t => t.State).HasColumnName("state");
 
 
-
+            builder.HasMany(e => e.Menus)
+            .WithMany(e => e.Languages)
+             .UsingEntity(
+               l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+               r => r.HasOne(typeof(Language)).WithMany().HasForeignKey("languageid"));
         }
     }
 }

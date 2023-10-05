@@ -17,20 +17,20 @@ namespace Taller.Infraestructure.Cores.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.Entity<Language>()
-           .HasMany(e => e.Menus)
-           .WithMany(e => e.Languages)
-           .UsingEntity(
-            l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
-            r => r.HasOne(typeof(Language)).WithMany().HasForeignKey("languageid"));
+           // modelBuilder.Entity<Language>()
+           //.HasMany(e => e.Menus)
+           //.WithMany(e => e.Languages)
+           //.UsingEntity(
+           // l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+           // r => r.HasOne(typeof(Language)).WithMany().HasForeignKey("languageid"));
 
-            modelBuilder.Entity<Permission>()
-           .HasMany(e => e.Menus)
-           .WithMany(e => e.Permissions)
-           .UsingEntity(
-                "rolemenupermission",
-            l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
-            r => r.HasOne(typeof(Permission)).WithMany().HasForeignKey("permissionid"));
+           // modelBuilder.Entity<Permission>()
+           //.HasMany(e => e.Menus)
+           //.WithMany(e => e.Permissions)
+           //.UsingEntity(
+           //     "rolemenupermission",
+           // l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+           // r => r.HasOne(typeof(Permission)).WithMany().HasForeignKey("permissionid"));
 
 
         }

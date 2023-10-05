@@ -20,6 +20,13 @@ namespace Taller.Infraestructure.Admins.Configurations
             builder.Property(t => t.Slug).HasColumnName("slug");
             builder.Property(t => t.RegistrationDate).HasColumnName("registrationdate");
             builder.Property(t => t.State).HasColumnName("state");
+
+            builder.HasMany(e => e.Menus)
+           .WithMany(e => e.Permissions)
+           .UsingEntity(
+                "rolemenupermission",
+            l => l.HasOne(typeof(Menu)).WithMany().HasForeignKey("menuid"),
+            r => r.HasOne(typeof(Permission)).WithMany().HasForeignKey("permissionid"));
         }
     }
 
