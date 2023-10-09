@@ -6,53 +6,51 @@ using Taller.Application.Admins.Services;
 
 namespace Taller.Api.Controllers.Admins
 {
-    //Comentado, ya que no pertecene al taller 3 del bootcamp
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LanguageController : ControllerBase
+    {
+        private readonly ILanguageServices _languageService;
 
-    //[Route("api/[controller]")]
-    //[ApiController]
-    //public class LanguageController : ControllerBase
-    //{
-    //    private readonly ILanguageServices _languageService;
+        public LanguageController(ILanguageServices languageService)
+        {
+            _languageService = languageService;
+        }
 
-    //    public LanguageController(ILanguageServices languageService)
-    //    {
-    //        _languageService = languageService;
-    //    }
+        // GET: api/<MineralTypeController>
+        [HttpGet]
+        public async Task<IEnumerable<LanguageDto>> Get()
+        {
 
-    //    // GET: api/<MineralTypeController>
-    //    [HttpGet]
-    //    public async Task<IEnumerable<LanguageDto>> Get()
-    //    {
+            return await _languageService.findAllAsync();
+        }
 
-    //        return await _languageService.findAllAsync();
-    //    }
+        // GET api/<MineralTypeController>/5
+        [HttpGet("{id}")]
+        public async Task<LanguageDto> Get(int id)
+        {
+            return await _languageService.FindByIdAsync(id);
+        }
 
-    //    // GET api/<MineralTypeController>/5
-    //    [HttpGet("{id}")]
-    //    public async Task<LanguageDto> Get(int id)
-    //    {
-    //        return await _languageService.FindByIdAsync(id);
-    //    }
+        // POST api/<MineralTypeController>
+        [HttpPost]
+        public async Task<LanguageDto> Post([FromBody] LanguageSaveDto saveDto)
+        {
+            return await _languageService.CreateAsync(saveDto);
+        }
 
-    //    // POST api/<MineralTypeController>
-    //    [HttpPost]
-    //    public async Task<LanguageDto> Post([FromBody] LanguageSaveDto saveDto)
-    //    {
-    //        return await _languageService.CreateAsync(saveDto);
-    //    }
+        // PUT api/<MineralTypeController>/5
+        [HttpPut("{id}")]
+        public async Task<LanguageDto> Put(int id, [FromBody] LanguageSaveDto saveDto)
+        {
+            return await _languageService.EditAsync(id, saveDto);
+        }
 
-    //    // PUT api/<MineralTypeController>/5
-    //    [HttpPut("{id}")]
-    //    public async Task<LanguageDto> Put(int id, [FromBody] LanguageSaveDto saveDto)
-    //    {
-    //        return await _languageService.EditAsync(id, saveDto);
-    //    }
-
-    //    // DELETE api/<MineralTypeController>/5
-    //    [HttpDelete("{id}")]
-    //    public async Task<LanguageDto> Delete(int id)
-    //    {
-    //        return await _languageService.DisabledAsync(id);
-    //    }
-    //}
+        // DELETE api/<MineralTypeController>/5
+        [HttpDelete("{id}")]
+        public async Task<LanguageDto> Delete(int id)
+        {
+            return await _languageService.DisabledAsync(id);
+        }
+    }
 }
