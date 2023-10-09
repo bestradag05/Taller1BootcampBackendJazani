@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Taller.Api.Exceptions;
+using Taller.Application.Admins.Dtos.Documents;
 using Taller.Application.Admins.Dtos.Investments;
 using Taller.Application.Admins.Dtos.Menus;
 using Taller.Application.Admins.Services;
@@ -24,6 +27,8 @@ namespace Taller.Api.Controllers.Admins
 
         // GET: api/<InvestmentController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentDto))]//Formato cuando todo esta correcto
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorModel))] //Formato cuando hay un error
         public async Task<IEnumerable<InvestmentDto>> Get()
         {
             return await _investmentService.findAllAsync();
@@ -31,9 +36,12 @@ namespace Taller.Api.Controllers.Admins
 
         // GET api/<InvestmentController>/5
         [HttpGet("{id}")]
-        public async Task<InvestmentDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentDto))]//Formato cuando todo esta correcto
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))] //Formato cuando hay un error
+        public async Task<Results<NotFound, Ok<InvestmentDto>>> Get(int id)
         {
-            return await _investmentService.FindByIdAsync(id);
+            var response = await _investmentService.FindByIdAsync(id);
+            return TypedResults.Ok(response);
         }
 
         //// POST api/<InvestmentController>
