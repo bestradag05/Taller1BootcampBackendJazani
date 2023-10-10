@@ -4,17 +4,20 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using Taller.Domain.Cores.Models;
 
 namespace Taller.Domain.Admins.Models
 {
-    public class Investment
+    public class Investment : CoreModel<int>
     {
-        public int Id { get; set; }
         public decimal AmountInvestd { get; set; }
 
+        public int? Year { get; set; }
         public string? Description { get; set; }
 
         public int? DocumentId { get; set; }
+
+        public string? AccountantCode { get; set; }
 
         public int HolderId { get; set; }
 
@@ -27,9 +30,6 @@ namespace Taller.Domain.Admins.Models
         public int MiningConcessionId { get; set; }
 
         public int? PeriodTypeId { get; set; }
-
-        public DateTime RegistrationDate { get; set; }
-        public bool State { get; set; }
 
 
         //Relaciones con tablas

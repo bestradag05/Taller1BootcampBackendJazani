@@ -20,7 +20,11 @@ namespace Taller.Application.Admins.Dtos.Investments
         public int Id { get; set; }
         public decimal AmountInvestd { get; set; }
 
+        public int? Year { get; set; }
+
         public string? Description { get; set; }
+
+        public string? AccountantCode { get; set; }
 
         public DocumentSimpleDto? Document { get; set; }
 

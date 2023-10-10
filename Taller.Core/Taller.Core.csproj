@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Taller.Core\Taller.Core.csproj" />
-  </ItemGroup>
-
 </Project>

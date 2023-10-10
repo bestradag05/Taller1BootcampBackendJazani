@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Taller.Core\Taller.Core.csproj" />
     <ProjectReference Include="..\Taller.Domain\Taller.Domain.csproj" />
   </ItemGroup>
 

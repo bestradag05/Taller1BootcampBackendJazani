@@ -17,8 +17,10 @@ namespace Taller.Infraestructure.Admins.Configurations
             builder.ToTable("investment", "mc");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.AmountInvestd).HasColumnName("amountinvestd").HasColumnType("decimal(9,4)"); ;
+            builder.Property(t => t.Year).HasColumnName("year");
             builder.Property(t => t.Description).HasColumnName("description");
             builder.Property(t => t.DocumentId).HasColumnName("documentid");
+            builder.Property(t => t.AccountantCode).HasColumnName("accountantcode");
             builder.Property(t => t.HolderId).HasColumnName("holderid");
             builder.Property(t => t.InvestmentConceptId).HasColumnName("investmentconceptid");
             builder.Property(t => t.InvestmentTypeId).HasColumnName("investmenttypeid");

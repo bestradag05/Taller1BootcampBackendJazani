@@ -8,7 +8,7 @@ using Taller.Domain.Cores.Repositories;
 
 namespace Taller.Domain.Admins.Repositories
 {
-    public interface IInvestmentRepository : ICrudRepository<Investment, int>
+    public interface IInvestmentRepository : ICrudRepository<Investment, int>, IPaginatedRepository<Investment>
     {
     }
 }

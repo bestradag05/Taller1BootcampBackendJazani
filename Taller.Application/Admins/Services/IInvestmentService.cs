@@ -1,13 +1,9 @@
 ﻿using Taller.Application.Admins.Dtos.Investments;
+using Taller.Application.Cores.Services;
 
 namespace Taller.Application.Admins.Services
 {
-    public interface IInvestmentService
+    public interface IInvestmentService : ICrudService<InvestmentDto, InvestmentSaveDto, int>, IPaginatedService<InvestmentDto, InvestmentFilterDto>
     {
-        Task<IReadOnlyList<InvestmentDto>> findAllAsync();
-        Task<InvestmentDto?> FindByIdAsync(int id);
-        Task<InvestmentDto> CreateAsync(InvestmentSaveDto saveDto);
-        Task<InvestmentDto> EditAsync(int id, InvestmentSaveDto saveDto);
-        Task<InvestmentDto> DisabledAsync(int id);
     }
 }

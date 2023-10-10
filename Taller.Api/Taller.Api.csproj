@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Taller.Application\Taller.Application.csproj" />
+    <ProjectReference Include="..\Taller.Core\Taller.Core.csproj" />
     <ProjectReference Include="..\Taller.Infraestructure\Taller.Infraestructure.csproj" />
   </ItemGroup>
 

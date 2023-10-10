@@ -6,6 +6,7 @@ using Taller.Application.Admins.Dtos.Investments;
 using Taller.Application.Admins.Dtos.Menus;
 using Taller.Application.Admins.Services;
 using Taller.Application.Admins.Services.Implementations;
+using Taller.Core.Paginations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -61,5 +62,11 @@ namespace Taller.Api.Controllers.Admins
         //public void Delete(int id)
         //{
         //}
+
+        [HttpGet("PaginatedSearch")]
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)
+        {
+            return await _investmentService.PaginatedSearch(request);
+        }
     }
 }

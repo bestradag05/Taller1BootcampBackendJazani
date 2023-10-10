@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using Taller.Application.Admins.Dtos.Investments;
 using Taller.Application.Admins.Dtos.Menus;
 using Taller.Application.Cores.Exceptions;
+using Taller.Core.Paginations;
 using Taller.Domain.Admins.Models;
 using Taller.Domain.Admins.Repositories;
 
@@ -30,7 +31,7 @@ namespace Taller.Application.Admins.Services.Implementations
             return _mapper.Map<IReadOnlyList<InvestmentDto>>(investmens);
         }
 
-        public async Task<InvestmentDto?> FindByIdAsync(int id)
+        public async Task<InvestmentDto> FindByIdAsync(int id)
         {
             Investment? investment = await _investmentRepository.FindByIdAsync(id);
 
@@ -77,9 +78,19 @@ namespace Taller.Application.Admins.Services.Implementations
             return _mapper.Map<InvestmentDto>(investmentSaved);
         }
 
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
+        {
+            var entity = _mapper.Map<RequestPagination<Investment>>(request);
+            var response = await _investmentRepository.PaginatedSearch(entity);
+
+            return _mapper.Map<ResponsePagination<InvestmentDto>>(response);
+        }
+
         private NotFoundCoreException InvestmentNotFound(int id)
         {
             return new NotFoundCoreException("Inversion no encontrado para el id: " + id);
         }
+
+       
     }
 }
