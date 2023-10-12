@@ -64,6 +64,8 @@ namespace Taller.Infraestructure.Admins.Persistence
                     .Where(x =>
                         
                         (string.IsNullOrWhiteSpace(filter.Description) || x.Description.ToUpper().Contains(filter.Description.ToUpper()))
+                        && (string.IsNullOrWhiteSpace(filter.AccountantCode) || x.AccountantCode.ToUpper().Contains(filter.AccountantCode.ToUpper()))
+                        && (x.AmountInvestd == filter.AmountInvestd)
                         && (x.State == filter.State)
                         && (filter.Year == null || x.Year == filter.Year)
 

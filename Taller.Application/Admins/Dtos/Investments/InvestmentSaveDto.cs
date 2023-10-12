@@ -16,19 +16,23 @@ namespace Taller.Application.Admins.Dtos.Investments
 
         public string? AccountantCode { get; set; }
 
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
 
         public int HolderId { get; set; }
 
-        public int InvestmentConceptId { get; set; }
+        public int DeclaredTypeId { get; set; }
+
+        public int? InvestmentConceptId { get; set; }
 
         public int InvestmentTypeId { get; set; }
 
-        public int MeasureUnit { get; set; }
+        public int CurrencyTypeId { get; set; }
+
+        public int? MeasureUnitId { get; set; }
 
         public int MiningConcessionId { get; set; }
 
-        public int PeriodType { get; set; }
+        public int? PeriodTypeId { get; set; }
 
 
     }

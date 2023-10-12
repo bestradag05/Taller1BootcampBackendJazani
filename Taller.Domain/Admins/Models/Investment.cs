@@ -10,7 +10,7 @@ namespace Taller.Domain.Admins.Models
 {
     public class Investment : CoreModel<int>
     {
-        public decimal AmountInvestd { get; set; }
+        public decimal AmountInvestd { get; set; } = default!;
 
         public int? Year { get; set; }
         public string? Description { get; set; }
@@ -21,9 +21,13 @@ namespace Taller.Domain.Admins.Models
 
         public int HolderId { get; set; }
 
+        public int DeclaredTypeId { get; set; }
+
         public int? InvestmentConceptId { get; set; }
 
         public int InvestmentTypeId { get; set; }
+
+        public int CurrencyTypeId { get; set; }
 
         public int? MeasureUnitId {  get; set; }
 

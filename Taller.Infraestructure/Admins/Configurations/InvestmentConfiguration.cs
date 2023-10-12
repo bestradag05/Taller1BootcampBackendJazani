@@ -22,8 +22,10 @@ namespace Taller.Infraestructure.Admins.Configurations
             builder.Property(t => t.DocumentId).HasColumnName("documentid");
             builder.Property(t => t.AccountantCode).HasColumnName("accountantcode");
             builder.Property(t => t.HolderId).HasColumnName("holderid");
+            builder.Property(t => t.DeclaredTypeId).HasColumnName("declaredtypeid");
             builder.Property(t => t.InvestmentConceptId).HasColumnName("investmentconceptid");
             builder.Property(t => t.InvestmentTypeId).HasColumnName("investmenttypeid");
+            builder.Property(t => t.CurrencyTypeId).HasColumnName("currencytypeid");
             builder.Property(t => t.MeasureUnitId).HasColumnName("measureunitid");
             builder.Property(t => t.MiningConcessionId).HasColumnName("miningconcessionid");
             builder.Property(t => t.PeriodTypeId).HasColumnName("periodtypeid");

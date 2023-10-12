@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Taller.Api.Exceptions;
 using Taller.Application.Admins.Dtos.Documents;
+using Taller.Application.Admins.Dtos.Holders;
 using Taller.Application.Admins.Dtos.Investments;
 using Taller.Application.Admins.Dtos.Menus;
 using Taller.Application.Admins.Services;
@@ -45,23 +46,39 @@ namespace Taller.Api.Controllers.Admins
             return TypedResults.Ok(response);
         }
 
-        //// POST api/<InvestmentController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST api/<InvestmentController>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(InvestmentDto))]//Formato cuando todo esta correcto
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]//Formato cuando hay un error
+        public async Task<Results<BadRequest, CreatedAtRoute<InvestmentDto>>> Post([FromBody] InvestmentSaveDto investmentSaveDto)
+        {
+            var response = await _investmentService.CreateAsync(investmentSaveDto);
 
-        //// PUT api/<InvestmentController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+            return TypedResults.CreatedAtRoute(response);
+        }
 
-        //// DELETE api/<InvestmentController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // PUT api/<InvestmentController>/5
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentDto))]//Formato cuando todo esta correcto
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponse))] //Formato cuando hay un error
+        public async Task<Results<NotFound, Ok<InvestmentDto>>> Put(int id, [FromBody] InvestmentSaveDto investmentSaveDto)
+        {
+
+            var response = await _investmentService.EditAsync(id, investmentSaveDto);
+
+            return TypedResults.Ok(response);
+        }
+
+        // DELETE api/<InvestmentController>/5
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvestmentDto))]//Formato cuando todo esta correcto
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))] //Formato cuando hay un error
+        public async Task<Results<NotFound, Ok<InvestmentDto>>> Delete(int id)
+        {
+            var response = await _investmentService.DisabledAsync(id);
+
+            return TypedResults.Ok(response);
+        }
 
         [HttpGet("PaginatedSearch")]
         public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch([FromQuery] RequestPagination<InvestmentFilterDto> request)

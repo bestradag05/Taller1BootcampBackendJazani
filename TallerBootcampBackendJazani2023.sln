@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taller.Application", "Talle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taller.Infraestructure", "Taller.Infraestructure\Taller.Infraestructure.csproj", "{1F2A08C9-416A-45FF-A3BF-BB5C12839E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taller.Core", "Taller.Core\Taller.Core.csproj", "{E26BCB71-BA2C-471D-B430-8AF0735D8FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taller.Core", "Taller.Core\Taller.Core.csproj", "{E26BCB71-BA2C-471D-B430-8AF0735D8FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taller.UnitTest", "Taller.UnitTest\Taller.UnitTest.csproj", "{88A150E1-8B78-4200-A1CE-9A8BAFA66183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E26BCB71-BA2C-471D-B430-8AF0735D8FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E26BCB71-BA2C-471D-B430-8AF0735D8FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E26BCB71-BA2C-471D-B430-8AF0735D8FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A150E1-8B78-4200-A1CE-9A8BAFA66183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A150E1-8B78-4200-A1CE-9A8BAFA66183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A150E1-8B78-4200-A1CE-9A8BAFA66183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A150E1-8B78-4200-A1CE-9A8BAFA66183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

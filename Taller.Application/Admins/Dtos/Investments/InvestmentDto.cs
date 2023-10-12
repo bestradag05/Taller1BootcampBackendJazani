@@ -18,13 +18,17 @@ namespace Taller.Application.Admins.Dtos.Investments
     public class InvestmentDto
     {
         public int Id { get; set; }
-        public decimal AmountInvestd { get; set; }
+        public decimal AmountInvestd { get; set; } = default!;
 
         public int? Year { get; set; }
 
         public string? Description { get; set; }
 
         public string? AccountantCode { get; set; }
+
+        public int CurrencyTypeId { get; set; }
+
+        public int DeclaredTypeId { get; set; }
 
         public DocumentSimpleDto? Document { get; set; }
 
