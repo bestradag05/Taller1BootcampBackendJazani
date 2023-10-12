@@ -2,24 +2,19 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Taller.Application.Admins.Dtos.Investments;
-using Taller.Application.Admins.Services.Implementations;
-using Taller.Application.Admins.Services;
-using Taller.Domain.Admins.Models;
-using Taller.Domain.Admins.Repositories;
-using Taller.Application.Admins.Dtos.Investments.Profiles;
+using Taller.Application.Admins.Dtos.Documents.Profiles;
 using Taller.Application.Admins.Dtos.Holders.Profiles;
 using Taller.Application.Admins.Dtos.InvestmentConcepts.Profiles;
+using Taller.Application.Admins.Dtos.Investments;
+using Taller.Application.Admins.Dtos.Investments.Profiles;
 using Taller.Application.Admins.Dtos.InvestmentTypes.Profiles;
 using Taller.Application.Admins.Dtos.MeasureUnits.Profiles;
 using Taller.Application.Admins.Dtos.MiningConsessions.Profiles;
 using Taller.Application.Admins.Dtos.PeriodTypes.Profiles;
-using Taller.Application.Admins.Dtos.Documents.Profiles;
+using Taller.Application.Admins.Services;
+using Taller.Application.Admins.Services.Implementations;
+using Taller.Domain.Admins.Models;
+using Taller.Domain.Admins.Repositories;
 
 namespace Taller.UnitTest.Application.Generals.Services
 {
