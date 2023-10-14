@@ -7,6 +7,15 @@ using Taller.Application.Cores.Context;
 using Taller.Infraestructure.Cores.Context;
 using Serilog;
 using Serilog.Events;
+using Microsoft.AspNetCore.Identity;
+using Taller.Core.Securities.Services.Implementations;
+using Taller.Core.Securities.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +35,13 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidationFilter());
+
+    AuthorizationPolicy authorizationPolicy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+
+    options.Filters.Add(new AuthorizeFilter()); //Filtrando la validacin para los controller, para indicar que deben estar protegidos
+
 });
 
 
@@ -43,6 +59,58 @@ builder.Services.Configure<RouteOptions>(options => //Configuramos las rutas mos
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//PasswordHasher
+
+builder.Services.Configure<PasswordHasherOptions>(options =>
+{
+    options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
+});
+
+
+//JWT
+string jwtSecretKey = builder.Configuration.GetSection("Secutiry:JwSecrectKey").Get<string>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    byte[] key = Encoding.ASCII.GetBytes(jwtSecretKey);
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateLifetime = true,
+        ValidIssuer = "",
+        ValidAudience = "",
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true
+    };
+});
+
+//AuthorizeOperationFilter
+builder.Services.AddSwaggerGen(options =>
+{
+    options.OperationFilter<AuthorizeOperationFilter>(); //Para indicar cuales tienen seguridad y cuales no
+    string schemeName = "Bearer";
+    options.AddSecurityDefinition(schemeName, new OpenApiSecurityScheme() //Para poder ingresar el token de seguridad una vez generado
+    {
+        Name = schemeName,
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Add Token.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http
+    });
+
+});
+
+
+//IsecutiryService
+
+builder.Services.AddTransient<ISecurityService, SecurityService>();
+
 
 //Infraestructure
 
